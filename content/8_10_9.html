@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Xibo Open Source Digital Signage</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=[[ViewPortWidth]]" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <!-- Copyright 2006-2018 Spring Signage Ltd. Part of the Xibo Open Source Digital Signage Solution. Released under the AGPLv3 or later. -->
+    <style type="text/css">
+        body {
+            margin: 0;
+            overflow: hidden;
+            font-family: sans-serif, Arial, Verdana, "Trebuchet MS";
+        }
+        h1, h2, h3, h4, p {
+            margin-top: 0;
+        }
+        #iframe {
+            border: 0;
+        }
+        .cycle-slide p, p.cycle-slide {
+            margin-bottom:0;
+        }
+    </style>
+    
+    <style>#iframe { border:0; }</style>
+</head>
+<body>
+    <div id="content">
+        <iframe id="iframe" scrolling="no" frameborder="0"
+            src="https://www.youtube.com/v/teLn5rfxVFs&amp;autoplay=1"></iframe>
+        </div>
+</body>
+<script type="text/javascript" src="jquery-1.11.1.min.js"></script>
+<script type="text/javascript" src="xibo-layout-scaler.js"></script>
+<script type="text/javascript" src="xibo-webpage-render.js"></script>
+<script>
+    var options = {
+        "modeId":"1","originalWidth":1920,"originalHeight":1080,"iframeWidth":1920,"iframeHeight":1080,"previewWidth":0,
+        "previewHeight":0,"offsetTop":0,"offsetLeft":0,"scale":1,"scaleOverride":0
+    }
+    $(document).ready(function() {
+        $("#content").xiboLayoutScaler(options);
+        $("#iframe").xiboIframeScaler(options);
+    });</script>
+
+</html>

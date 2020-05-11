@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<layout width="1920" height="1080" bgcolor="#000" schemaVersion="3">
+    <region id="10" width="1920.0000" height="1080.0000" top="0.0000" left="0.0000">
+        <media id="9" type="webpage" render="native" duration="60" useDuration="0">
+            <options>
+                <modeid>1</modeid>
+                <transparency>1</transparency>
+                <uri>https%3A%2F%2Fwww.youtube.com%2Fv%2FteLn5rfxVFs%26amp%3Bautoplay%3D1</uri>
+                <xmds>1</xmds>
+            </options>
+            <raw/>
+        </media>
+    </region>
+</layout>

@@ -1,0 +1,11 @@
+<?xml version="1.0"?>
+<layout width="1920" height="1080" bgcolor="#000" schemaVersion="3">
+    <region id="3" width="1920.0000" height="1080.0000" top="0.0000" left="0.0000">
+        <media id="3" type="image" render="native" duration="10" useDuration="0" fileId="20">
+            <options>
+                <uri>20.jpg</uri><scaleType>center</scaleType>
+            </options>
+            <raw/>
+        </media>
+    </region>
+</layout>

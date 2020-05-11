@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<schedule generated="2019-06-04 17:38:46" filterFrom="2019-06-04 17:00:00" filterTo="2019-06-04 18:00:00">
+  <layout file="5" fromdt="1970-01-01 09:00:00" todt="2038-01-19 12:14:07" scheduleid="45" priority="0" syncEvent=""/>
+  <layout file="9" fromdt="1970-01-01 09:00:00" todt="2038-01-19 12:14:07" scheduleid="48" priority="0" syncEvent="">
+    <dependents>
+      <file>24.mp4</file>
+      <file>25.mp4</file>
+      <file>26.mp4</file>
+    </dependents>
+  </layout>
+  <default file="1"/>
+  <dependants>
+    <file>jquery-1.11.1.min.js</file>
+    <file>jquery-cycle-2.1.6.min.js</file>
+    <file>moment.js</file>
+    <file>flipclock.min.js</file>
+    <file>xibo-layout-scaler.js</file>
+    <file>xibo-dataset-render.js</file>
+    <file>xibo-image-render.js</file>
+    <file>8.otf</file>
+    <file>9.otf</file>
+    <file>10.ttf</file>
+    <file>11.ttf</file>
+    <file>12.otf</file>
+    <file>xibo-text-render.js</file>
+    <file>jquery.marquee.min.js</file>
+    <file>pdf.js</file>
+    <file>pdf.worker.js</file>
+    <file>compatibility.js</file>
+    <file>xibo-webpage-render.js</file>
+  </dependants>
+</schedule>

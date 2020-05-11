@@ -24,31 +24,29 @@ class Win(QMainWindow):
         self.running = False
         self.layout_id = id
         self.layout_time = time
-        self.widget = QWidget() 
-        self.setCentralWidget(self.widget)
         self.layout_timer = QTimer()
         self.layout_timer.setSingleShot(True)
         self.layout_timer.timeout.connect(self.stop)
-        self.setStyleSheet('background-color: black;')
+        self.widget = QWidget()
+        self.setCentralWidget(self.widget)
+        #---- kong ----
+        self.setWindowFlags(Qt.Window | Qt.FramelessWindowHint)
+        #self.setAttribute(Qt.WA_TranslucentBackground)
+        #----
 
     def __enter__(self):
-        #---- kong ----
         self.play(self.layout_id)
         self.layout_timer.setInterval(self.layout_time*1000)
         self.layout_timer.start()
-        #----
         return self
 
     def __exit__(self, exc_type, exc_val, exc_tb):
-        #self.stop()
         if  exc_tb or exc_type or exc_val:
             pass
 
     def play(self, layout_id):
         path = f'content/{layout_id}.xml'
         layout = yLayout.get_layout(path)
-
-        #print(layout) #---- test ----
 
         if  not layout:
             print('---- yWin: layout error ----')
@@ -75,7 +73,6 @@ class Win(QMainWindow):
         print('---- yWin: replay ----')
         if  self.regions:
             for r in self.regions:
-                #r.play_end_signal.connect(self.replay)
                 r.play()
 
     def stop(self):

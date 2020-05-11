@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<layout width="1920" height="1080" bgcolor="#000" schemaVersion="3">
+    <region id="6" width="1920.0000" height="1080.0000" top="0.0000" left="0.0000">
+        <media id="5" type="text" render="native" duration="20" useDuration="1">
+            <options>
+                <backgroundColor>#13ea65</backgroundColor>
+                <effect>scrollVert</effect>
+                <xmds>1</xmds>
+            </options>
+            <raw>
+                <text><![CDATA[<p style="text-align: center;"><span style="font-size: 48px;"><span style="color: #ffffff;">This is my first text layout.</span></span></p>]]></text>
+            </raw>
+        </media>
+    </region>
+</layout>

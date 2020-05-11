@@ -94,6 +94,10 @@ class Media(QObject):
             self.widget.setFocusPolicy(Qt.NoFocus)
             self.widget.setContextMenuPolicy(Qt.NoContextMenu)
             self.widget.setObjectName('%s-widget' % self.objectName())
+            #---- kong ----
+            self.widget.setAttribute(Qt.WA_TranslucentBackground)
+            self.widget.setWindowFlags(Qt.FramelessWindowHint)
+            #----
 
 #================================
 #
@@ -227,89 +231,6 @@ class MediaVideo(Media):
         return True
         #----
 
-#================================
-#
-#
-'''
-class MediaVideo_(Media):
-
-    def __init__(self, media, parent_widget):
-        super(MediaVideo_, self).__init__(media, parent_widget)
-        self.widget = QVideoWidget(parent_widget)
-        self.player = QMediaPlayer()
-        self.playlist = QMediaPlaylist()
-        self.player.setPlaylist(self.playlist)
-        self.player.setVideoOutput(self.widget)
-        self.widget.setGeometry(media['geometry'])
-        self.set_default_widget_prop()
-        self.widget.setDisabled(True)
-
-    @Slot()
-    def play(self):
-        self.finished = 0
-        uri = self.options['uri']
-        path = f'content/{uri}'
-        self.playlist.addMedia(QMediaContent(path))
-        self.player.play()
-
-        self.widget.show()
-        self.widget.raise_()
-        if  float(self.duration) > 0:
-            self.play_timer.setInterval(int(float(self.duration) * 1000))
-            self.play_timer.start()
-        self.started_signal.emit()
-
-    @Slot()
-    def stop(self, delete_widget=False):
-        #---- kong ----
-        if  not self.widget:
-            return False
-        self.player.stop()
-        self.playlist = None
-        self.player = None
-        super(MediaVideo_, self).stop(delete_widget)
-        return True
-        #----
-'''
-#================================
-#
-#
-'''
-class MediaText_(Media):
-
-    def __init__(self, media, parent_widget):
-        super(MediaText_, self).__init__(media, parent_widget)
-        self.widget = QWebEngineView(parent_widget)
-        self.widget.setGeometry(media['geometry'])
-        self.set_default_widget_prop()
-        self.widget.setDisabled(True)
-
-    @Slot()
-    def play(self):
-        self.finished = 0
-        path = '%s/%s_%s_%s.html' % (
-            self.save_dir,
-            self.layout_id,
-            self.region_id,
-            self.id
-        )
-        self.widget.load('file:///' + path)
-        self.widget.show()
-        self.widget.raise_()
-        if  float(self.duration) > 0:
-            self.play_timer.setInterval(int(float(self.duration) * 1000))
-            self.play_timer.start()
-        self.started_signal.emit()
-
-    @Slot()
-    def stop(self, delete_widget=False):
-        #---- kong ----
-        if  not self.widget:
-            return False
-        super(MediaText_, self).stop(delete_widget)
-        return True
-        #----
-'''
 #===============================
 #
 #
@@ -369,15 +290,18 @@ class MediaWeb(Media):
         self.widget.raise_()
         #---- kong ----
         url = self.options['uri']
+        l = str(self.rect.left())
+        t = str(self.rect.top())
+        w = str(self.rect.width())
+        h = str(self.rect.height())
+        s = f'--window-size={w},{h}'
+        p = f'--window-position={l},{t}'
         args = [
-            #str(self.rect.left()), 
-            #str(self.rect.top()),
-            #str(self.rect.width()),
-            #str(self.rect.height()),
-            #'--kiosk',
-            QUrl.fromPercentEncoding(QByteArray(url.encode('utf-8')))
+            '--kiosk', s, p, QUrl.fromPercentEncoding(QByteArray(url.encode('utf-8')))
+            #l, t, w, h, QUrl.fromPercentEncoding(QByteArray(url.encode('utf-8')))
         ]
         self.process.start('chromium-browser', args)
+        #self.process.start('./xWeb', args)
         self.stop_timer.start()
         #----
 
@@ -393,6 +317,7 @@ class MediaWeb(Media):
         if  self.process.state() == QProcess.ProcessState.Running:
             #---- kill process ----
             os.system('pkill chromium')
+            #os.system('pkill xWeb')
             #----
             self.process.waitForFinished()
             self.process.close()
@@ -461,15 +386,21 @@ class MediaText(Media):
         self.widget.raise_()
         #---- kong ----
         path = f'file:///home/pi/rdtone/urd/content/{self.layout_id}_{self.region_id}_{self.id}.html'
+        
+        print(path)
+        
+        l = str(self.rect.left())
+        t = str(self.rect.top())
+        w = str(self.rect.width())
+        h = str(self.rect.height())
+        s = f'--window-size={w},{h}'
+        p = f'--window-position={l},{t}'
         args = [
-            #str(self.rect.left()), 
-            #str(self.rect.top()),
-            #str(self.rect.width()),
-            #str(self.rect.height()),
-            '--kiosk',
-            path
+            '--kiosk', s, p, path
+            #l, t, w, h, path
         ]
         self.process.start('chromium-browser', args)
+        #self.process.start('./xWeb', args)
         self.stop_timer.start()
         #----
 
@@ -485,6 +416,7 @@ class MediaText(Media):
         if  self.process.state() == QProcess.ProcessState.Running:
             #---- kill process ----
             os.system('pkill chromium')
+            #os.system('pkill xWeb')
             #----
             self.process.waitForFinished()
             self.process.close()
@@ -497,6 +429,42 @@ class MediaText(Media):
 #================================
 #
 #
+'''
+class MediaText_(Media):
+
+    def __init__(self, media, parent_widget):
+        super(MediaText_, self).__init__(media, parent_widget)
+        self.widget = QWebEngineView(parent_widget)
+        self.widget.setGeometry(media['geometry'])
+        self.set_default_widget_prop()
+        self.widget.setDisabled(True)
+
+    @Slot()
+    def play(self):
+        self.finished = 0
+        path = '%s/%s_%s_%s.html' % (
+            self.save_dir,
+            self.layout_id,
+            self.region_id,
+            self.id
+        )
+        self.widget.load('file:///' + path)
+        self.widget.show()
+        self.widget.raise_()
+        if  float(self.duration) > 0:
+            self.play_timer.setInterval(int(float(self.duration) * 1000))
+            self.play_timer.start()
+        self.started_signal.emit()
+
+    @Slot()
+    def stop(self, delete_widget=False):
+        #---- kong ----
+        if  not self.widget:
+            return False
+        super(MediaText_, self).stop(delete_widget)
+        return True
+        #----
+'''
 
 #================================
 #

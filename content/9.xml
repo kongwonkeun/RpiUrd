@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<layout width="1920" height="1080" bgcolor="#000" schemaVersion="3">
+    <region id="11" width="1920.0000" height="1080.0000" top="0.0000" left="0.0000">
+        <media id="10" type="video" render="native" duration="10" useDuration="0" fileId="24">
+            <options>
+                <uri>24.mp4</uri>
+                <loop>0</loop>
+                <mute>0</mute>
+                <scaleType>aspect</scaleType>
+            </options>
+            <raw/>
+        </media>
+        <media id="11" type="video" render="native" duration="10" useDuration="0" fileId="25">
+            <options>
+                <uri>25.mp4</uri>
+                <mute>0</mute>
+            </options>
+            <raw/>
+        </media>
+        <media id="12" type="video" render="native" duration="10" useDuration="0" fileId="26">
+            <options>
+                <uri>22.mp4</uri>
+                <mute>0</mute>
+            </options>
+            <raw/>
+        </media>
+    </region>
+</layout>

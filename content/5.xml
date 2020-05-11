@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<layout width="1920" height="1080" bgcolor="#000" schemaVersion="3">
+    <region id="7" width="1920.0000" height="1080.0000" top="0.0000" left="0.0000">
+        <media id="6" type="webpage" render="native" duration="10" useDuration="0">
+            <options>
+                <modeid>1</modeid>
+                <name>rdt</name>
+                <pageWidth>0</pageWidth>
+                <transparency>1</transparency>
+                <uri>http%3A%2F%2Fwww.google.com%3A</uri>
+                <xmds>1</xmds>
+            </options>
+            <raw/>
+        </media>
+    </region>
+</layout>
